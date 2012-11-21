@@ -5,6 +5,7 @@
 
 #include <Qpainter>
 #include <QImage>
+#include <QMouseEvent>
 
 namespace Ui {
 class MainWindow;

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include <QString>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -18,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
             this->field[i][j]=0; //заполнили начальное поле нол€ми
         }
     }
+    this->throw3balls(5);
     ui->setupUi(this);
 }
 
@@ -84,11 +86,55 @@ QImage* MainWindow::setImage(int index)
 
 void MainWindow::mousePressEvent(QMouseEvent* event)
 {
-    if (event->button() == Qt::RightButton);
-    {
-    this->throw3balls(3);
-    update();
+    int x= event->x()/24;
+    int y= event->y()/24;
+
+    QString str;
+    static bool Bmove;
+    static int x0;
+    static int y0;
+
+qDebug() <<"x " << x << "y " << y;
+qDebug() <<"field " << this->field[x][y];
+if (this->field[y][x] !=0)
+{
+    Bmove=true;
+    x0=x;
+    y0=y;
+}
+    else {
+        if (Bmove)
+        {
+            if (true){
+                //moveball
+                Bmove=false;
+                if (!false)
+                {
+                    if(this->colRows*this->colRows-this->colBalls>=3){
+                         this->throw3balls(3);
+                     }
+
+                     else{
+
+                         this->throw3balls(this->colRows*this->colRows-this->colBalls);
+                     }
+
+                     //ѕровер€ем, есть не все ли клетки зан€ты
+
+                     //≈сли да, то заканчиваем игру
+
+                     if(this->colRows*this->colRows==this->colBalls){
+
+                     }
+                }
+            }
+            else{
+                qDebug() << "net puti";
+            }
+        }
+        qDebug() << "shar ne vibran";
     }
+    update();
 }
 
 bool MainWindow::throw3balls(int iNum){
@@ -118,7 +164,7 @@ bool MainWindow::throw3balls(int iNum){
 void MainWindow::setField(int x, int y, int BallColor)
 {
     this->field[x][y]=BallColor;
-
+    qDebug() << "set field" << x << y << "value" << BallColor;
     if (BallColor !=0)
     {
         this->colBalls++;
