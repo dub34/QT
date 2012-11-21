@@ -16,7 +16,7 @@ MainWindow::~MainWindow()
 void MainWindow::paintEvent(QPaintEvent *)
 {
 
-    QImage image("D:/vbr/logo.jpg");
+    QImage image(":/images/BLACK.png");
 
     QPainter painter(this);
     int x(0),y(0);
@@ -35,5 +35,6 @@ void MainWindow::paintEvent(QPaintEvent *)
 
 void MainWindow::mousePressEvent(QMouseEvent *)
 {
-    qDebug() << "mouseClick at x:" << pos().x() << ' and pos y: ' << pos().y();
+    qDebug() << "mouseClick at x:" << pos().x()
+             << ' and pos y: ' << pos().y();
 }
